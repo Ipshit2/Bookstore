@@ -4,44 +4,44 @@ import {asyncHandler} from "../asyncHandler.js"
 
 //enter a book in database  
 //http://localhost:8000/book/register
-// const enterbook = asyncHandler(async (req, res)=>{
-//     get details
-//     const {title, author, year} = req.body
+const enterbook = asyncHandler(async (req, res)=>{
+    get details
+    const {title, author, year} = req.body
 
-//     validate empty or not
-//     if (!title || !author|| !year) {
-//         return res.status(400).send({
-//             message: " All fields are required "
-//         })
-//     }
-//     const existedBook = await Book.findOne({title})
-//     if(existedBook){
-//         return res.status(409).send({
-//             message : " Book already exists "
-//         })
-//     }
+    validate empty or not
+    if (!title || !author|| !year) {
+        return res.status(400).send({
+            message: " All fields are required "
+        })
+    }
+    const existedBook = await Book.findOne({title})
+    if(existedBook){
+        return res.status(409).send({
+            message : " Book already exists "
+        })
+    }
 
-//     creating object
-//     const book = await Book.create({
-//         title,
-//         author,
-//         year,
+    creating object
+    const book = await Book.create({
+        title,
+        author,
+        year,
          
-//     })
+    })
 
-//     check created successfull or not
-//     const entered = await Book.findById(book._id)
-//     if(!entered){
-//         return res.status(500).send({
-//             message: "Something went wrong"
-//         })
-//     }
-//     else{
-//         return res.status(201).send({
-//             message: "Book is registered Successfully"
-//         })
-//     }
-// })
+    check created successfull or not
+    const entered = await Book.findById(book._id)
+    if(!entered){
+        return res.status(500).send({
+            message: "Something went wrong"
+        })
+    }
+    else{
+        return res.status(201).send({
+            message: "Book is registered Successfully"
+        })
+    }
+})
 
 
 //get all books from database

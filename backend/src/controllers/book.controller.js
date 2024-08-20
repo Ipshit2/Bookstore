@@ -3,12 +3,12 @@ import {asyncHandler} from "../asyncHandler.js"
 
 
 //enter a book in database  
-//http://localhost:8000/book/register
+
 const enterbook = asyncHandler(async (req, res)=>{
-    get details
+    //get details
     const {title, author, year} = req.body
 
-    validate empty or not
+    //validate empty or not
     if (!title || !author|| !year) {
         return res.status(400).send({
             message: " All fields are required "
@@ -21,7 +21,7 @@ const enterbook = asyncHandler(async (req, res)=>{
         })
     }
 
-    creating object
+    //creating object
     const book = await Book.create({
         title,
         author,
@@ -29,7 +29,7 @@ const enterbook = asyncHandler(async (req, res)=>{
          
     })
 
-    check created successfull or not
+    //check created successfull or not
     const entered = await Book.findById(book._id)
     if(!entered){
         return res.status(500).send({
@@ -45,7 +45,7 @@ const enterbook = asyncHandler(async (req, res)=>{
 
 
 //get all books from database
-//http://localhost:8000/book
+
 const allbook = asyncHandler(async (req, res)=>{
     
     const books = await Book.find({})
@@ -67,7 +67,7 @@ const allbook = asyncHandler(async (req, res)=>{
 })
 
 //get one book by id
-//http://localhost:8000/book/{id}
+//
 const onebook =asyncHandler(async(req,res)=>{
     const book = await Book.findById(req.params.id)
     try {
@@ -93,7 +93,7 @@ const onebook =asyncHandler(async(req,res)=>{
 
 
 //delete a book from database
-//http://localhost:8000/book/{id}
+//
 const deletebook = asyncHandler(async(req, res)=>{
     try {
         const item =await Book.findByIdAndDelete(req.params.id)
